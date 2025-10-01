@@ -1,0 +1,6 @@
+[
+  { "question": "What language is commonly used for AI and ML?", "options": ["C++", "Python", "Ruby", "PHP"], "answer": 1 },
+  { "question": "Capital of France?", "options": ["Berlin", "Paris", "Madrid", "Rome"], "answer": 1 },
+  { "question": "HTML is for ...", "options": ["Styling", "Markup", "Programming", "Database"], "answer": 1 },
+  { "question": "What does CSS stand for?", "options": ["Cascading Style Sheets", "Computer Style Sheets", "Creative Style System", "Control Style Sheet"], "answer": 0 }
+]

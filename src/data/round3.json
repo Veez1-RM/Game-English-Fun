@@ -1,0 +1,7 @@
+[
+  { "image": "images/laptop.png", "options": ["Laptop", "Keyboard", "Monitor", "Mouse"], "answer": 0 },
+  { "image": "images/cat.png", "options": ["Dog", "Cat", "Mouse", "Turtle"], "answer": 1 },
+  { "image": "images/phone.png", "options": ["Phone", "Tablet", "Clock", "Camera"], "answer": 0 },
+  { "image": "images/coffee.png", "options": ["Tea", "Coffee", "Juice", "Soda"], "answer": 1 },
+  { "image": "images/pencil.png", "options": ["Pen", "Pencil", "Brush", "Marker"], "answer": 1 }
+]
