@@ -1,47 +1,95 @@
-import React, { useContext } from 'react';
-import { GameContext } from '../context/GameContext';
-import ScoreBoardBox from '../components/ScoreboardBox';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext } from "react";
+import { GameContext } from "../context/GameContext";
+import { useNavigate } from "react-router-dom";
 
-export default function Scoreboard(){
-  const { teams, scores, currentRound, setCurrentRound, resetGame } = useContext(GameContext);
+export default function Scoreboard() {
+  const { teams, scores, currentRound } = useContext(GameContext);
   const navigate = useNavigate();
 
-  const goNext = (nextRound) => {
-  setCurrentRound(nextRound);
-  navigate(`/round${nextRound}`);
-};
+  const isDraw = scores.team1 === scores.team2;
+  const winnerKey =
+    scores.team1 > scores.team2 ? "team1" : scores.team2 > scores.team1 ? "team2" : null;
 
-
-
-  const winner = scores.team1 === scores.team2 ? 'DRAW' : (scores.team1 > scores.team2 ? teams.team1 : teams.team2);
+  // helper untuk render breakdown per ronde
+  const renderBreakdown = (teamKey) => {
+    if (!scores.perRound) return null;
+    return (
+      <ul style={{ marginTop: 6, textAlign: "left" }}>
+        <li>Ronde 1: {scores.perRound[teamKey][1]} poin</li>
+        <li>Ronde 2: {scores.perRound[teamKey][2]} poin</li>
+        <li>Ronde 3: {scores.perRound[teamKey][3]} poin</li>
+      </ul>
+    );
+  };
 
   return (
     <div className="container center">
-      <h2>Scoreboard</h2>
-      <div style={{ display:'flex', gap: 12, justifyContent:'center', marginTop: 12 }}>
-        <ScoreBoardBox name={teams.team1} score={scores.team1} />
-        <ScoreBoardBox name={teams.team2} score={scores.team2} />
-      </div>
+      {currentRound === null ? (
+        <>
+          <h2>FINAL RESULT 🎉</h2>
+          <div className="box" style={{ fontSize: 22, marginBottom: 20 }}>
+            <div
+              style={{
+                background: isDraw || winnerKey === "team1" ? "#ffd70055" : "transparent",
+                padding: "8px",
+                borderRadius: "6px",
+                marginBottom: 10,
+              }}
+            >
+              <p>
+                {teams.team1}: <strong>{scores.team1}</strong> poin
+              </p>
+              {renderBreakdown("team1")}
+            </div>
 
-      <div style={{ marginTop: 18 }}>
-        {currentRound === 1 && (
-            <button onClick={() => goNext(2)}>Lanjut ke Ronde 2</button>
-            )}
-            {currentRound === 2 && (
-            <button onClick={() => goNext(3)}>Lanjut ke Ronde 3</button>
-            )}
-            {currentRound === 3 && (
-            <>
-                <h3>Hasil Akhir: {winner === 'DRAW' ? 'Seri' : `Pemenang: ${winner}`}</h3>
-                <div style={{ marginTop: 10 }}>
-                <button onClick={() => { resetGame(); navigate('/'); }}>
-                    Main Lagi
-                </button>
-                </div>
-            </>
-            )}
-        </div>
+            <div
+              style={{
+                background: isDraw || winnerKey === "team2" ? "#ffd70055" : "transparent",
+                padding: "8px",
+                borderRadius: "6px",
+              }}
+            >
+              <p>
+                {teams.team2}: <strong>{scores.team2}</strong> poin
+              </p>
+              {renderBreakdown("team2")}
+            </div>
+          </div>
+
+          {isDraw ? (
+            <h3>🤝 Pertandingan Berakhir Seri!</h3>
+          ) : (
+            <h3>
+              🏆 Pemenang:{" "}
+              <span style={{ color: "green" }}>
+                {winnerKey === "team1" ? teams.team1 : teams.team2}
+              </span>
+            </h3>
+          )}
+
+          <button style={{ marginTop: 20 }} onClick={() => navigate("/")}>
+            Main Lagi 🔁
+          </button>
+        </>
+      ) : (
+        <>
+          <h2>Skor Sementara</h2>
+          <div className="box" style={{ fontSize: 20, marginBottom: 20 }}>
+            <p>
+              {teams.team1}: <strong>{scores.team1}</strong> poin
+            </p>
+            {renderBreakdown("team1")}
+            <p style={{ marginTop: 12 }}>
+              {teams.team2}: <strong>{scores.team2}</strong> poin
+            </p>
+            {renderBreakdown("team2")}
+          </div>
+
+          <button onClick={() => navigate(`/round${currentRound}`)}>
+            Lanjut ke Ronde {currentRound} ▶
+          </button>
+        </>
+      )}
     </div>
   );
 }

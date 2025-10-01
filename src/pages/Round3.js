@@ -7,7 +7,7 @@ import PopupSelectTeam from '../components/PopupSelectTeam';
 
 const POINTS = 20;
 
-export default function Round3(){
+export default function Round3() {
   const { teams, addScore, setCurrentRound } = useContext(GameContext);
   const navigate = useNavigate();
 
@@ -22,7 +22,13 @@ export default function Round3(){
     setIndex(0);
   }, []);
 
-  if (!questions.length) return <div className="container center"><p>Loading images...</p></div>;
+  if (!questions.length) {
+    return (
+      <div className="container center">
+        <p>Loading images...</p>
+      </div>
+    );
+  }
 
   const q = questions[index];
 
@@ -33,22 +39,30 @@ export default function Round3(){
 
   const handleAssign = (teamKey) => {
     setShowPopup(false);
+
     const correct = selectedOption === q.answer;
+    const teamName = teamKey === 'team1' ? teams.team1 : teams.team2;
+
     if (correct) {
-      addScore(teamKey, POINTS);
-      setFeedback(`${teamKey === 'team1' ? teams.team1 : teams.team2} benar! +${POINTS}`);
+      addScore(teamKey, POINTS, 3);
+      setFeedback(`${teamName} benar! +${POINTS} poin`);
     } else {
-      setFeedback(`Salah untuk ${teamKey === 'team1' ? teams.team1 : teams.team2}. Jawaban benar: ${String.fromCharCode(65 + q.answer)}.`);
+      setFeedback(
+        `Salah untuk ${teamName}. Jawaban benar: ${String.fromCharCode(
+          65 + q.answer
+        )}.`
+      );
     }
-    // proceed next
+
     setTimeout(() => {
       const next = index + 1;
       if (next >= questions.length) {
-        setCurrentRound(4); // finished all rounds
+        setCurrentRound(null); // semua soal ronde 3 selesai
         navigate('/scoreboard');
       } else {
         setIndex(next);
         setFeedback('');
+        setSelectedOption(null); // reset jawaban untuk soal berikutnya
       }
     }, 900);
   };
@@ -56,7 +70,9 @@ export default function Round3(){
   return (
     <div className="container">
       <h2>Ronde 3 — Tebak Gambar (Berebut)</h2>
-      <p>Soal ke: {index + 1} / {questions.length}</p>
+      <p>
+        Soal ke: {index + 1} / {questions.length}
+      </p>
 
       <div style={{ marginTop: 12 }}>
         <div className="box center">
@@ -69,7 +85,11 @@ export default function Round3(){
 
         <div style={{ marginTop: 12 }}>
           {q.options.map((opt, idx) => (
-            <button key={idx} style={{ marginRight: 8, marginTop: 8 }} onClick={() => handleOptionClick(idx)}>
+            <button
+              key={idx}
+              style={{ marginRight: 8, marginTop: 8 }}
+              onClick={() => handleOptionClick(idx)}
+            >
               {String.fromCharCode(65 + idx)}. {opt}
             </button>
           ))}
