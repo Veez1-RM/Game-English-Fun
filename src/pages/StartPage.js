@@ -1,12 +1,41 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GameContext } from '../context/GameContext';
+import './StartPage.css'
+import bolaImage from '../img/bola.png';
+import logoCss from '../img/csslogo.png';
+import Logor from '../img/Untitled-2.png';
+import Card from "../components/Card";
+
+const logos = [
+  { src: logoCss, alt: "CSS Logo" },
+  { src: Logor, alt: "Random Logo" },
+  { src: logoCss, alt: "CSS Logo" }, // bisa tambah lagi logo lain
+  { src: Logor, alt: "Random Logo" },
+  { src: logoCss, alt: "CSS Logo" },
+  { src: Logor, alt: "Random Logo" },
+  { src: logoCss, alt: "CSS Logo" }, // bisa tambah lagi logo lain
+  { src: Logor, alt: "Random Logo" },
+  { src: logoCss, alt: "CSS Logo" },
+  { src: Logor, alt: "Random Logo" },
+  { src: logoCss, alt: "CSS Logo" }, // bisa tambah lagi logo lain
+  { src: Logor, alt: "Random Logo" },
+];
 
 export default function StartPage(){
   const { teams, setTeamNames, resetGame, setCurrentRound } = useContext(GameContext);
   const [t1, setT1] = useState(teams.team1);
   const [t2, setT2] = useState(teams.team2);
   const navigate = useNavigate();
+  const rulesRef = useRef(null);
+
+  const handleScrollToRules = () => {
+    if (rulesRef.current) {
+      const elementBottom = rulesRef.current.getBoundingClientRect().bottom + window.pageYOffset;
+      const y = elementBottom - window.innerHeight + 3;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+  };
 
   const handleStart = () => {
     resetGame();           // clear previous session
@@ -16,18 +45,48 @@ export default function StartPage(){
   };
 
   return (
-    <div className="container center">
-      <h1>Quiz Battle — 3 Ronde</h1>
-      <div style={{ marginTop: 20 }}>
-        <div style={{ marginBottom: 8 }}>
+    <div className='Full'>
+      <div class='bg-c1'></div>
+      <div class="hero-section" >
+        <img src={bolaImage} alt="decoration" className="decorative-image decorative-image-left" />
+        <img src={bolaImage} alt="decoration" className="decorative-image decorative-image-right" />
+        <h1 class='Headline'>English Fun Quiz</h1>
+        <p className='Sub-Headline'>Learn, Play, and Speak with Confidence</p>
+        <button className='button1' onClick={handleScrollToRules}> Start </button>
+      </div>
+
+      <div className="logo-marquee">
+            <div className="logo-track">
+              {/* Track pertama */}
+              {logos.map((logo, index) => (
+                <img key={index} src={logo.src} alt={logo.alt} />
+              ))}
+              {/* Track duplikat supaya loop mulus */}
+              {logos.map((logo, index) => (
+                <img key={`dup-${index}`} src={logo.src} alt={logo.alt} />
+              ))}
+            </div>
+          </div>
+      <div className='Rules-container'ref={rulesRef}>
+        <div className='Headline-Rule'>
+            <p>Rules</p>
+        </div>
+        <div className='card-container'>
+          <Card />
+          <Card />
+          <Card />
+        </div>
+      </div>
+      <div >
+        <div>
           <label>Nama Kelompok 1</label><br/>
           <input value={t1} onChange={(e) => setT1(e.target.value)} />
         </div>
-        <div style={{ marginBottom: 8 }}>
+        <div>
           <label>Nama Kelompok 2</label><br/>
           <input value={t2} onChange={(e) => setT2(e.target.value)} />
         </div>
-        <button onClick={handleStart} style={{ marginTop: 12 }}>Mulai Game</button>
+        <button onClick={handleStart} >Mulai Game</button>
       </div>
     </div>
   );
