@@ -266,6 +266,12 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    border-radius: 0px 0px 40px 41px;
+    -webkit-border-radius: 0px 0px 40px 41px;
+    -moz-border-radius: 0px 0px 40px 41px;
+    box-shadow: 3px 10px 18px 0px rgba(0,0,0,0.76);
+    -webkit-box-shadow: 3px 10px 18px 0px rgba(0,0,0,0.76);
+    -moz-box-shadow: 3px 10px 18px 0px rgba(0,0,0,0.76);
 }
 
 .Headline-Rule{
@@ -280,13 +286,37 @@
   margin-top: 50px;
 }
 
-.card-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 70px;
-    
+/* Floating animasi tipis */
+@keyframes floating {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
 }
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 70px;
+  opacity: 0;
+  transform: translateY(50px); /* posisi awal (belum muncul) */
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.card-container.floating {
+  animation: floating 4s ease-in-out infinite;
+}
+
+.card-container.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-container.hidden-up {
+  opacity: 0;
+  transform: translateY(-50px); /* keluar ke atas */
+}
+
 
 
 
