@@ -36,21 +36,62 @@ export default function StartPage(){
   const [isVisible, setIsVisible] = useState(false);
   const [scrollDirection, setScrollDirection] = useState("down");
   const lastScrollY = useRef(0);
+  const bgmRef = useRef(null);
+
+
+// ✅ Play BGM saat halaman dimuat
+  useEffect(() => {
+    const bgm = new Audio('/audio/bg-music.mp3');
+    bgm.loop = true;
+    bgm.volume = 0.1;
+
+    bgm.play().catch(err => {
+      console.warn('Autoplay error:', err);
+    });
+
+    bgmRef.current = bgm;
+
+    // Cleanup saat halaman berpindah
+    return () => {
+      if (bgmRef.current) {
+        bgmRef.current.pause();
+        bgmRef.current.currentTime = 0;
+      }
+    };
+  }, []);
 
   const handleScrollToRules = () => {
-    if (rulesRef.current) {
-      const elementBottom = rulesRef.current.getBoundingClientRect().bottom + window.pageYOffset;
-      const y = elementBottom - window.innerHeight + 3;
-      window.scrollTo({ top: y, behavior: "smooth" });
-    }
-  };
+  const clickSound = new Audio('/audio/click-start.mp3');
+  clickSound.volume = 1;
+  clickSound.play();
+
+  if (rulesRef.current) {
+    const elementBottom = rulesRef.current.getBoundingClientRect().bottom + window.pageYOffset;
+    const y = elementBottom - window.innerHeight + 3;
+    window.scrollTo({ top: y, behavior: "smooth" });
+  }
+};
+
 
   const handleStart = () => {
-    resetGame();           // clear previous session
+    // 🔊 Play sound effect saat "Mulai Game" diklik
+    const clickSound = new Audio('/audio/click-start.mp3');
+    clickSound.volume = 1;
+    clickSound.play().catch(err => console.warn("Click sound gagal:", err));
+
+    // 🎵 Stop background music
+    if (bgmRef.current) {
+      bgmRef.current.pause();
+      bgmRef.current.currentTime = 0;
+    }
+
+    // Lanjut ke game
+    resetGame();
     setTeamNames(t1, t2);
     setCurrentRound(1);
     navigate('/round1');
   };
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -83,8 +124,8 @@ export default function StartPage(){
 
   return (
     <div className='Full'>
-      <div class='bg-c1'></div>
-      <div class="hero-section" >
+      <div className='bg-c1'></div>
+      <div className="hero-section" >
         <img src={bolaImage} alt="decoration" className="decorative-image decorative-image-left" />
         <img src={bolaImage} alt="decoration" className="decorative-image decorative-image-right" />
         <h1 class='Headline'>English Fun Quiz</h1>

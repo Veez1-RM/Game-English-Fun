@@ -1,7 +1,32 @@
 [
-  { "image": "images/laptop.png", "options": ["Laptop", "Keyboard", "Monitor", "Mouse"], "answer": 0 },
-  { "image": "images/cat.png", "options": ["Dog", "Cat", "Mouse", "Turtle"], "answer": 1 },
-  { "image": "images/phone.png", "options": ["Phone", "Tablet", "Clock", "Camera"], "answer": 0 },
-  { "image": "images/coffee.png", "options": ["Tea", "Coffee", "Juice", "Soda"], "answer": 1 },
-  { "image": "images/pencil.png", "options": ["Pen", "Pencil", "Brush", "Marker"], "answer": 1 }
+  {
+    "image": "img/Round3/Untitled-4.png",
+    "imageFull": "img/Round3/Untitled-1.png",
+    "options": ["Laptop", "Keyboard", "Monitor", "Mouse"],
+    "answer": 0
+  },
+  {
+    "image": "img/Round3/cat-blur.png",
+    "imageFull": "img/Round3/cat.png",
+    "options": ["Dog", "Cat", "Mouse", "Turtle"],
+    "answer": 1
+  },
+  {
+    "image": "img/Round3/phone-blur.png",
+    "imageFull": "img/Round3/phone.png",
+    "options": ["Phone", "Tablet", "Clock", "Camera"],
+    "answer": 0
+  },
+  {
+    "image": "img/Round3/coffee-blur.png",
+    "imageFull": "img/Round3/coffee.png",
+    "options": ["Tea", "Coffee", "Juice", "Soda"],
+    "answer": 1
+  },
+  {
+    "image": "img/Round3/pencil-blur.png",
+    "imageFull": "img/Round3/pencil.png",
+    "options": ["Pen", "Pencil", "Brush", "Marker"],
+    "answer": 1
+  }
 ]
