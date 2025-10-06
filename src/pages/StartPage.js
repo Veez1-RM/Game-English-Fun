@@ -6,6 +6,8 @@ import bolaImage from '../img/bola.png';
 import logoCss from '../img/csslogo.png';
 import Logor from '../img/Untitled-2.png';
 import Card from "../components/Card";
+import Button from "../components/button";
+import Dither from '../components/Dither';
 import Rule1 from "../img/Untitled-1.png";
 import Rule2 from "../img/Untitled-4.png";
 import Rule3 from "../img/Untitled-5.png";
@@ -146,6 +148,19 @@ export default function StartPage(){
             </div>
           </div>
       <div className='Rules-container'ref={rulesRef}>
+
+        <div className="dither-bg">
+          <Dither
+            waveColor={[0.6, 0.0, 0.9]}
+            disableAnimation={false}
+            enableMouseInteraction={true}
+            mouseRadius={0.3}
+            colorNum={4}
+            waveAmplitude={0.3}
+            waveFrequency={3}
+            waveSpeed={0.05}
+          />
+        </div>
         <div className='Headline-Rule'>
             <p>Rules</p>
         </div>
@@ -170,17 +185,19 @@ export default function StartPage(){
             frontImage={Rule3}
           />
         </div>
+        <div className='button-play'>
+          <div >
+              <input className='input1' value={t1} onChange={(e) => setT1(e.target.value)} />
+            </div>
+            <Button onClick={handleStart}/>
+            <div>
+              <input className='input1' value={t2} onChange={(e) => setT2(e.target.value)} />
+            </div>
+            
+          </div>
       </div>
-      <div >
-        <div>
-          <label>Nama Kelompok 1</label><br/>
-          <input value={t1} onChange={(e) => setT1(e.target.value)} />
-        </div>
-        <div>
-          <label>Nama Kelompok 2</label><br/>
-          <input value={t2} onChange={(e) => setT2(e.target.value)} />
-        </div>
-        <button onClick={handleStart} >Mulai Game</button>
+      <div className='footer'>
+            <p>Designed & Developed by Ridho Maulana and Ahmad Hafis.</p>
       </div>
     </div>
   );

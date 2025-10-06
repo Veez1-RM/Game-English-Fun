@@ -80,7 +80,7 @@ export default function Scoreboard() {
         transition={{ duration: 0.6 }}
       >
         <h2 className="scoreboard-title">
-          {isFinal ? "🏆 FINAL RESULT 🏆" : "📊 Skor Sementara"}
+          {isFinal ? "🏆 FINAL RESULT 🏆" : "Skor Sementara"}
         </h2>
         {!isFinal && (
           <p className="scoreboard-subtitle">
@@ -143,7 +143,7 @@ export default function Scoreboard() {
             className="scoreboard-button button-finish"
             onClick={handleShowWinnerPopup}
           >
-            🎉 Finish & Lihat Pemenang
+            Finish & Lihat Pemenang
           </button>
 
         ) : (
