@@ -1,9 +1,9 @@
-*{
-    scroll-behavior: smooth;
+* {
+  scroll-behavior: smooth;
 }
 
 .Full {
-    position: relative;
+  position: relative;
 }
 
 .hero-section {
@@ -39,19 +39,18 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background-image: 
-    repeating-linear-gradient(
-      to right, 
-      rgba(46, 1, 60, 0.2), 
-      rgba(121, 150, 255, 0.2) 1px, 
-      transparent 1px, 
+  background-image: repeating-linear-gradient(
+      to right,
+      rgba(46, 1, 60, 0.2),
+      rgba(121, 150, 255, 0.2) 1px,
+      transparent 1px,
       transparent 50px
     ),
     repeating-linear-gradient(
-      to bottom, 
-      rgba(46, 1, 60, 0.2), 
-      rgba(121, 150, 255, 0.2) 1px, 
-      transparent 1px, 
+      to bottom,
+      rgba(46, 1, 60, 0.2),
+      rgba(121, 150, 255, 0.2) 1px,
+      transparent 1px,
       transparent 50px
     );
   animation: bg-scrolling-reverse 0.92s infinite linear;
@@ -71,9 +70,9 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: 900;
   margin: 0;
-  
+
   /* Glow effect */
-  text-shadow: 0px 0px 11px rgba(255,0,244,0.38);
+  text-shadow: 0px 0px 11px rgba(255, 0, 244, 0.38);
 
   /* Floating animation */
   animation: floaty 4s ease-in-out infinite;
@@ -88,8 +87,7 @@
   margin-top: 10px;
 
   /* Glow tipis */
-  text-shadow: 
-    0 0 5px rgba(216, 180, 248, 0.6),
+  text-shadow: 0 0 5px rgba(216, 180, 248, 0.6),
     0 0 10px rgba(150, 80, 255, 0.4);
 
   /* Animasi fade in */
@@ -112,69 +110,75 @@
 
 /* Keyframes animasi floating */
 @keyframes floaty {
-  0%   { transform: translateY(0px); }
-  50%  { transform: translateY(-10px); } /* naik sedikit */
-  100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  } /* naik sedikit */
+  100% {
+    transform: translateY(0px);
+  }
 }
 
-/* From Uiverse.io by cssbuttons-io */ 
+/* From Uiverse.io by cssbuttons-io */
 .button1 {
- --glow-color: rgb(217, 176, 255);
- --glow-spread-color: rgba(191, 123, 255, 0.781);
- --enhanced-glow-color: rgb(231, 206, 255);
- --btn-color: rgb(100, 61, 136);
- border: .25em solid var(--glow-color);
- padding: 1em 3em;
- color: var(--glow-color);
- font-size: 15px;
- font-weight: bold;
- background-color: var(--btn-color);
- border-radius: 1em;
- outline: none;
- box-shadow: 0 0 1em .25em var(--glow-color),
-        0 0 4em 1em var(--glow-spread-color),
-        inset 0 0 .75em .25em var(--glow-color);
- text-shadow: 0 0 .5em var(--glow-color);
- position: relative;
- transition: all 0.3s;
- height: fit-content;
- width: fit-content;
+  --glow-color: rgb(217, 176, 255);
+  --glow-spread-color: rgba(191, 123, 255, 0.781);
+  --enhanced-glow-color: rgb(231, 206, 255);
+  --btn-color: rgb(100, 61, 136);
+  border: 0.25em solid var(--glow-color);
+  padding: 1em 3em;
+  color: var(--glow-color);
+  font-size: 15px;
+  font-weight: bold;
+  background-color: var(--btn-color);
+  border-radius: 1em;
+  outline: none;
+  box-shadow: 0 0 1em 0.25em var(--glow-color),
+    0 0 4em 1em var(--glow-spread-color),
+    inset 0 0 0.75em 0.25em var(--glow-color);
+  text-shadow: 0 0 0.5em var(--glow-color);
+  position: relative;
+  transition: all 0.3s;
+  height: fit-content;
+  width: fit-content;
 }
 
 .button1::after {
- pointer-events: none;
- content: "";
- position: absolute;
- top: 120%;
- left: 0;
- height: 100%;
- width: 100%;
- background-color: var(--glow-spread-color);
- filter: blur(2em);
- opacity: .7;
- transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  top: 120%;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--glow-spread-color);
+  filter: blur(2em);
+  opacity: 0.7;
+  transform: perspective(1.5em) rotateX(35deg) scale(1, 0.6);
 }
 
 .button1:hover {
- color: var(--btn-color);
- background-color: var(--glow-color);
- box-shadow: 0 0 1em .25em var(--glow-color),
-        0 0 4em 2em var(--glow-spread-color),
-        inset 0 0 .75em .25em var(--glow-color);
+  color: var(--btn-color);
+  background-color: var(--glow-color);
+  box-shadow: 0 0 1em 0.25em var(--glow-color),
+    0 0 4em 2em var(--glow-spread-color),
+    inset 0 0 0.75em 0.25em var(--glow-color);
 }
 
 .button1:active {
- box-shadow: 0 0 0.6em .25em var(--glow-color),
-        0 0 2.5em 2em var(--glow-spread-color),
-        inset 0 0 .5em .25em var(--glow-color);
+  box-shadow: 0 0 0.6em 0.25em var(--glow-color),
+    0 0 2.5em 2em var(--glow-spread-color),
+    inset 0 0 0.5em 0.25em var(--glow-color);
 }
 
 .decorative-image {
-  position: absolute;   /* 'Melepaskan' gambar dari alur normal */
-  width: 300px;         /* Atur ukuran gambar sesuai kebutuhan */
+  position: absolute; /* 'Melepaskan' gambar dari alur normal */
+  width: 300px; /* Atur ukuran gambar sesuai kebutuhan */
   height: auto;
-  z-index: 0;           /* Pastikan gambar di belakang teks tapi di depan background */
-  opacity: 0.9;         /* Opsional: buat sedikit transparan */
+  z-index: 0; /* Pastikan gambar di belakang teks tapi di depan background */
+  opacity: 0.9; /* Opsional: buat sedikit transparan */
 }
 
 .decorative-image-left {
@@ -192,34 +196,33 @@
   animation: floatRotateGlowRight 45s ease-in-out infinite;
 }
 
-
 @keyframes floatRotateGlowLeft {
   0% {
     transform: translateY(0) rotate(0deg);
-    filter: drop-shadow(0 0 6px rgba(200,150,255,0.4));
+    filter: drop-shadow(0 0 6px rgba(200, 150, 255, 0.4));
   }
   50% {
     transform: translateY(200px) rotate(180deg);
-    filter: drop-shadow(0 0 14px rgba(200,150,255,0.6));
+    filter: drop-shadow(0 0 14px rgba(200, 150, 255, 0.6));
   }
   100% {
     transform: translateY(0) rotate(360deg);
-    filter: drop-shadow(0 0 6px rgba(200,150,255,0.4));
+    filter: drop-shadow(0 0 6px rgba(200, 150, 255, 0.4));
   }
 }
 
 @keyframes floatRotateGlowRight {
   0% {
     transform: translateY(0) rotate(0deg);
-    filter: drop-shadow(0 0 6px rgba(200,150,255,0.4));
+    filter: drop-shadow(0 0 6px rgba(200, 150, 255, 0.4));
   }
   50% {
     transform: translateY(-200px) rotate(-180deg);
-    filter: drop-shadow(0 0 14px rgba(200,150,255,0.6));
+    filter: drop-shadow(0 0 14px rgba(200, 150, 255, 0.6));
   }
   100% {
     transform: translateY(0) rotate(-360deg);
-    filter: drop-shadow(0 0 6px rgba(200,150,255,0.4));
+    filter: drop-shadow(0 0 6px rgba(200, 150, 255, 0.4));
   }
 }
 
@@ -227,13 +230,18 @@
   height: 20px;
   width: 100%;
   overflow: hidden;
-  background: linear-gradient(90deg, #2c0057, #14002d);
+  background: #220646;
+  background: linear-gradient(
+    53deg,
+    rgb(86, 0, 117) 0%,
+    rgba(34, 6, 70, 1) 100%
+  );
   padding: 15px 0;
   position: absolute;
-  box-shadow: 3px -1px 26px 0px rgba(0,0,0,0.75);
--webkit-box-shadow: 3px -1px 26px 0px rgba(0,0,0,0.75);
--moz-box-shadow: 3px -1px 26px 0px rgba(0,0,0,0.75);
- z-index: 10;
+  box-shadow: 3px -1px 26px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 3px -1px 26px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 3px -1px 26px 0px rgba(0, 0, 0, 0.75);
+  z-index: 10;
 }
 
 .logo-track {
@@ -256,25 +264,34 @@
 }
 
 @keyframes scroll {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
-.Rules-container{
-    height: 700px;
-    background-color: #220646;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    border-radius: 0px 0px 40px 41px;
-    -webkit-border-radius: 0px 0px 40px 41px;
-    -moz-border-radius: 0px 0px 40px 41px;
-    box-shadow: 3px 10px 18px 0px rgba(0,0,0,0.76);
-    -webkit-box-shadow: 3px 10px 18px 0px rgba(0,0,0,0.76);
-    -moz-box-shadow: 3px 10px 18px 0px rgba(0,0,0,0.76);
+.Rules-container {
+  height: 700px;
+  background: #220646;
+  background: linear-gradient(
+    53deg,
+    rgba(34, 6, 70, 1) 0%,
+    rgba(73, 8, 97, 1) 100%
+  );
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 0px 0px 40px 41px;
+  -webkit-border-radius: 0px 0px 40px 41px;
+  -moz-border-radius: 0px 0px 40px 41px;
+  box-shadow: 3px 10px 18px 0px rgba(0, 0, 0, 0.76);
+  -webkit-box-shadow: 3px 10px 18px 0px rgba(0, 0, 0, 0.76);
+  -moz-box-shadow: 3px 10px 18px 0px rgba(0, 0, 0, 0.76);
 }
 
-.Headline-Rule{
+.Headline-Rule {
   height: fit-content;
   font-size: 60px;
   color: #f5e8f8;
@@ -288,9 +305,15 @@
 
 /* Floating animasi tipis */
 @keyframes floating {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 .card-container {
@@ -317,6 +340,196 @@
   transform: translateY(-50px); /* keluar ke atas */
 }
 
+.containerc3 {
+  position: relative;
+  z-index: -1;
+  display: flex;
+  flex-direction: column;
+  background: #220646;
+  background: linear-gradient(
+    53deg,
+    rgba(34, 6, 70, 1) 0%,
+    rgba(73, 8, 97, 1) 100%
+  );
+  height: 1000px;
+  margin-top: -200px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buttonstart {
+  height: fit-content;
+}
+
+.gambar {
+  width: 100%;
+  position: absolute;
+  margin-top: 250px;
+}
+
+.containerbutton {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  z-index: 10; /* tombol di atas stack */
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.stack {
+  position: relative;
+  width: 100%;
+  height: auto;
+  margin-top: 195px;
+  opacity: 0;
+  transform: translateY(100px) scale(0.9); /* muncul dari bawah */
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.stack.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1); /* posisi normal */
+}
+
+/* saat tidak terlihat (scroll ke atas), keluar ke atas */
+.stack:not(.visible) {
+  opacity: 0;
+  transform: translateY(-100px) scale(0.9);
+}
 
 
+.stack img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  animation: floatIdle 6s ease-in-out infinite;
+}
 
+/* Idle animation biar lebih hidup */
+@keyframes floatIdle {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.gloo-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none; /* supaya ga ganggu klik */
+}
+
+/* Elemen rotating background - fokus di Gloo */
+.gloo-rotating-bg {
+  position: absolute;
+  width: 45vw;
+  height: 45vw;
+  max-width: 600px;
+  max-height: 600px;
+  background: conic-gradient(
+    #ff0000,
+    #ff7f00,
+    #ffff00,
+    #00ff00,
+    #00ffff,
+    #0000ff,
+    #ff00ff,
+    #ff0000
+  );
+  border-radius: 50%;
+  animation: rotation_gloo 3s linear infinite;
+  filter: blur(35px);
+  z-index: -1;
+  opacity: 0.7;
+  margin-top: 700px;
+}
+
+@keyframes rotation_gloo {
+  to { transform: rotate(360deg); }
+}
+
+/* gambar utama DI DEPAN pseudo-element */
+.gloo-img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 4px rgba(174, 0, 255, 0.6));
+}
+
+/* 💫 aura lembut menyelimuti pinggiran (ngikut bentuk PNG) */
+.gloo-glow {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    rgba(175, 0, 255, 0.4) 0%,
+    rgba(175, 0, 255, 0.25) 40%,
+    rgba(175, 0, 255, 0.1) 70%,
+    transparent 100%
+  );
+  filter: blur(40px);
+  z-index: 1;
+  animation: subtleGlow 5s ease-in-out infinite;
+  opacity: 0.8;
+  mix-blend-mode: screen;
+}
+
+/* 🌠 Efek napas halus */
+@keyframes subtleGlow {
+  0%, 100% {
+    opacity: 0.6;
+    filter: blur(40px);
+  }
+  50% {
+    opacity: 0.9;
+    filter: blur(50px);
+  }
+}
+
+.gloo-outline {
+  position: absolute;
+  inset: 0;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    #ff0000 60deg,
+    #00ff00 120deg,
+    #0000ff 180deg,
+    #ffff00 240deg,
+    #ff00ff 300deg,
+    transparent 360deg
+  );
+  animation: rotateOutline 3s linear infinite;
+  z-index: 1;
+  filter: blur(10px);
+  opacity: 0.9;
+}
+
+/* Rotasi lembut */
+@keyframes rotateOutline {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
