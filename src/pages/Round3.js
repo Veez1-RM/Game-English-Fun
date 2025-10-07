@@ -20,23 +20,30 @@ export default function Round3() {
   const [feedback, setFeedback] = useState('');
   const [showReveal, setShowReveal] = useState(false);
   const [correctAnswer, setCorrectAnswer] = useState('');
-  const [imageError, setImageError] = useState(false);
+  const [answeredTeams, setAnsweredTeams] = useState([]); // Track teams that answered
+  const [isQuestionAnswered, setIsQuestionAnswered] = useState(false); // Track if question correctly answered
+  
   const correctSoundRef = useRef(null);
   const wrongSoundRef = useRef(null);
-
 
   useEffect(() => {
     setQuestions(shuffleArray(pool));
     setIndex(0);
 
-    // Inisialisasi audio
+    // Initialize audio
     correctSoundRef.current = new Audio("/audio/correct-answer.mp3");
     wrongSoundRef.current = new Audio("/audio/error.mp3");
-
     correctSoundRef.current.volume = 0.9;
     wrongSoundRef.current.volume = 0.9;
   }, []);
 
+  // Reset state when question changes
+  useEffect(() => {
+    setAnsweredTeams([]);
+    setIsQuestionAnswered(false);
+    setFeedback('');
+    setSelectedOption(null);
+  }, [index]);
 
   if (!questions.length) {
     return (
@@ -50,6 +57,7 @@ export default function Round3() {
   const q = questions[index];
 
   const handleOptionClick = (optIdx) => {
+    if (shouldDisableOptions) return; // Extra safety
     setSelectedOption(optIdx);
     setShowPopup(true);
   };
@@ -57,30 +65,48 @@ export default function Round3() {
   const handleAssign = (teamKey) => {
     setShowPopup(false);
 
+    // Check if team already answered
+    if (answeredTeams.includes(teamKey)) {
+      alert(`${teams[teamKey]} sudah menjawab soal ini!`);
+      setSelectedOption(null);
+      return;
+    }
+
     const correct = selectedOption === q.answer;
-    const teamName = teamKey === 'team1' ? teams.team1 : teams.team2;
+    const teamName = teams[teamKey];
     const answerText = q.options[q.answer];
 
     setCorrectAnswer(answerText);
+    setAnsweredTeams(prev => [...prev, teamKey]);
 
     if (correct) {
       addScore(teamKey, POINTS, 3);
       setFeedback(`correct|${teamName}`);
+      setIsQuestionAnswered(true);
       if (correctSoundRef.current) {
         correctSoundRef.current.currentTime = 0;
-        correctSoundRef.current.play().catch(err => console.warn("Correct sound error:", err));
+        correctSoundRef.current.play().catch(err => console.warn("Sound error:", err));
       }
+      setShowReveal(true);
     } else {
       setFeedback(`wrong|${teamName}|${String.fromCharCode(65 + q.answer)}`);
       if (wrongSoundRef.current) {
         wrongSoundRef.current.currentTime = 0;
-        wrongSoundRef.current.play().catch(err => console.warn("Wrong sound error:", err));
+        wrongSoundRef.current.play().catch(err => console.warn("Sound error:", err));
+      }
+      
+      // Check if both teams answered wrong
+      if (answeredTeams.length + 1 >= 2) {
+        setShowReveal(true);
+      } else {
+        // Reset for next team to answer
+        setTimeout(() => {
+          setFeedback('');
+          setSelectedOption(null);
+        }, 2000);
       }
     }
-
-    setShowReveal(true);
   };
-
 
   const handleNextQuestion = () => {
     setShowReveal(false);
@@ -90,8 +116,6 @@ export default function Round3() {
       navigate('/scoreboard');
     } else {
       setIndex(next);
-      setFeedback('');
-      setSelectedOption(null);
     }
   };
 
@@ -101,8 +125,10 @@ export default function Round3() {
   const teamName = feedbackParts[1] || '';
   const wrongAnswerLetter = feedbackParts[2] || '';
 
-  // Assume full image has '-full' suffix or is in a 'full' folder
-  const fullImagePath = q.imageFull || q.image; // Use imageFull if available, otherwise use same image
+  const fullImagePath = q.imageFull || q.image;
+
+  // Check if options should be disabled
+  const shouldDisableOptions = isQuestionAnswered || answeredTeams.length >= 2;
 
   return (
     <div className="round3-container">
@@ -110,7 +136,6 @@ export default function Round3() {
       <div className="bg-shapes">
         <div className="shape shape-1"></div>
         <div className="shape shape-2"></div>
-        <div className="shape shape-3"></div>
       </div>
 
       {/* Header */}
@@ -119,11 +144,7 @@ export default function Round3() {
           className="round3-title"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 1,
-            type: "spring",
-            stiffness: 100
-          }}
+          transition={{ duration: 1, type: "spring", stiffness: 100 }}
         >
           🎨 Ronde 3 — Tebak Gambar
         </motion.h2>
@@ -168,8 +189,11 @@ export default function Round3() {
               initial={{ scale: 1.1, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.8 }}
+              onError={(e) => {
+                e.target.style.display = 'none';
+              }}
             />
-            {!feedback && (
+            {!shouldDisableOptions && (
               <motion.div
                 className="magnifying-icon"
                 initial={{ scale: 0 }}
@@ -198,7 +222,7 @@ export default function Round3() {
                 key={idx}
                 className="round3-option"
                 onClick={() => handleOptionClick(idx)}
-                disabled={feedback !== ''}
+                disabled={shouldDisableOptions}
                 initial={{ opacity: 0, x: idx % 2 === 0 ? -50 : 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{
@@ -206,23 +230,19 @@ export default function Round3() {
                   type: "spring",
                   stiffness: 150
                 }}
-                whileHover={feedback === '' ? {
-                  scale: 1.02,
-                  y: -8
-                } : {}}
-                whileTap={feedback === '' ? { scale: 0.98 } : {}}
+                whileHover={!shouldDisableOptions ? { scale: 1.02, y: -8 } : {}}
+                whileTap={!shouldDisableOptions ? { scale: 0.98 } : {}}
                 style={{
-                  cursor: feedback !== '' ? 'not-allowed' : 'pointer',
-                  opacity: feedback !== '' ? 0.6 : 1
+                  cursor: shouldDisableOptions ? 'not-allowed' : 'pointer',
+                  opacity: shouldDisableOptions ? 0.5 : 1
                 }}
               >
                 <motion.div
                   className="option-badge"
-                  animate={selectedOption === idx ? {
-                    scale: [1, 1.3, 1],
-                    rotate: [0, 360, 360]
+                  animate={selectedOption === idx && !shouldDisableOptions ? {
+                    scale: [1, 1.2, 1],
                   } : {}}
-                  transition={{ duration: 0.6 }}
+                  transition={{ duration: 0.3 }}
                 >
                   {String.fromCharCode(65 + idx)}
                 </motion.div>
@@ -232,30 +252,32 @@ export default function Round3() {
           </div>
         </div>
 
-        {/* Feedback
+        {/* Inline Feedback for wrong answers */}
         <AnimatePresence mode="wait">
-          {feedback && (
+          {feedback && !showReveal && isWrong && (
             <motion.div
-              className={`round3-feedback ${isCorrect ? 'feedback-success' : 'feedback-error'}`}
-              initial={{ opacity: 0, scale: 0.8, y: 30 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.8, y: -30 }}
-              transition={{
-                duration: 0.5,
-                type: "spring",
-                stiffness: 200
+              style={{
+                marginTop: '20px',
+                padding: '15px 20px',
+                borderRadius: '12px',
+                background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 38, 0.2) 100%)',
+                color: '#fca5a5',
+                border: '2px solid #ef4444',
+                textAlign: 'center',
+                fontWeight: '700',
+                fontSize: '1rem',
+                boxShadow: '0 6px 20px rgba(0, 0, 0, 0.3)'
               }}
+              initial={{ opacity: 0, scale: 0.8, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.8, y: -20 }}
+              transition={{ duration: 0.4 }}
             >
-              <span>
-                {isCorrect ? (
-                  <>🎉 {teamName} benar! +{POINTS} poin</>
-                ) : (
-                  <>❌ Salah untuk {teamName}. Jawaban benar: {wrongAnswerLetter}</>
-                )}
-              </span>
+              ❌ Salah untuk <strong>{teamName}</strong>. 
+              {answeredTeams.length < 2 && ' Tim lain silakan coba!'}
             </motion.div>
           )}
-        </AnimatePresence> */}
+        </AnimatePresence>
       </motion.div>
 
       {/* Image Reveal Modal */}
@@ -287,20 +309,23 @@ export default function Round3() {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.3 }}
               >
-                Gambar Lengkap!
+                🎯 Gambar Lengkap!
               </motion.h3>
-              <motion.img
-                src={process.env.PUBLIC_URL + '/' + fullImagePath}
-                alt="revealed"
-                className="revealed-image"
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.4, duration: 0.5 }}
-                onError={(e) => {
-                  console.log('Error loading full image, using puzzle image');
-                  e.target.src = process.env.PUBLIC_URL + '/' + q.image;
-                }}
-              />
+              
+              {fullImagePath && (
+                <motion.img
+                  src={process.env.PUBLIC_URL + '/' + fullImagePath}
+                  alt="revealed"
+                  className="revealed-image"
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.4, duration: 0.5 }}
+                  onError={(e) => {
+                    e.target.src = process.env.PUBLIC_URL + '/' + q.image;
+                  }}
+                />
+              )}
+              
               <motion.div
                 className={`popup-feedback ${isCorrect ? 'popup-feedback-correct' : 'popup-feedback-wrong'}`}
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -310,7 +335,7 @@ export default function Round3() {
                 {isCorrect ? (
                   <p>🎉 <strong>{teamName}</strong> benar! +{POINTS} poin</p>
                 ) : (
-                  <p>❌ Salah untuk <strong>{teamName}</strong>. Jawaban benar: <strong>{wrongAnswerLetter}</strong></p>
+                  <p>❌ Tidak ada yang benar. Jawaban: <strong>{String.fromCharCode(65 + q.answer)}</strong></p>
                 )}
               </motion.div>
 
@@ -322,6 +347,7 @@ export default function Round3() {
               >
                 Jawabannya: <strong>{correctAnswer}</strong>
               </motion.p>
+              
               <motion.button
                 className="close-reveal-btn"
                 onClick={handleNextQuestion}
@@ -341,7 +367,10 @@ export default function Round3() {
       {/* Team Selection Popup */}
       <PopupSelectTeam
         show={showPopup}
-        onClose={() => setShowPopup(false)}
+        onClose={() => {
+          setShowPopup(false);
+          setSelectedOption(null);
+        }}
         teams={teams}
         onSelect={(teamKey) => handleAssign(teamKey)}
       />
