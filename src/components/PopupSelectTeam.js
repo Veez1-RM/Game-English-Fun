@@ -28,9 +28,7 @@ export default function PopupSelectTeam({ show, onClose, teams, onSelect }) {
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            <button className="popup-close-btn" onClick={onClose}>
-              ✕
-            </button>
+            
 
             <div className="popup-header">
               <motion.div 

@@ -287,7 +287,7 @@ export default function Round3() {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.3 }}
               >
-                🎯 Gambar Lengkap!
+                Gambar Lengkap!
               </motion.h3>
               <motion.img
                 src={process.env.PUBLIC_URL + '/' + fullImagePath}

@@ -155,7 +155,7 @@ export default function Round2() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
         >
-          🎯 Ronde 2 — Quiz ABCD
+          Ronde 2 — Quiz ABCD
         </motion.h2>
         
         <div className="round2-info">

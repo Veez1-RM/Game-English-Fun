@@ -268,7 +268,7 @@ export default function Round1() {
                             onClick={handleUndo}
                             disabled={answer.length === 0 || !!feedback}
                         >
-                            ⬅️ Undo
+                            Undo
                         </motion.button>
                         <motion.button
                             className="control-btn submit-btn"
@@ -277,7 +277,7 @@ export default function Round1() {
                             onClick={handleSubmit}
                             disabled={answer.length === 0 || !!feedback}
                         >
-                            ✅ Submit
+                            Submit
                         </motion.button>
                     </div>
 
@@ -387,7 +387,7 @@ function TimerComponent({ timeLimit, onTimeUp, isActive }) {
                     className="timer-bar-r1"
                     animate={{
                         width: `${timerPercentage}%`,
-                        backgroundColor: isCritical ? '#dc3545' : isWarning ? '#ffc107' : '#00cec9'
+                        backgroundColor: isCritical ? '#dc3545' : isWarning ? '#ffc107' : '#8200ceff'
                     }}
                     transition={{ duration: 0.3 }}
                 />

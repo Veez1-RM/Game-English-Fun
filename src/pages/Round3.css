@@ -114,6 +114,7 @@
   z-index: 10;
   backdrop-filter: blur(20px);
   border: 3px solid rgba(168, 85, 247, 0.4);
+  margin-bottom: 150px;
 }
 
 /* Image Section */
@@ -235,19 +236,19 @@
 }
 
 .round3-option:nth-child(1) .option-badge {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #5c0879 0%, #451378 100%);
 }
 
 .round3-option:nth-child(2) .option-badge {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  background: linear-gradient(135deg, #5c0879 0%, #451378 100%);
 }
 
 .round3-option:nth-child(3) .option-badge {
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  background: linear-gradient(135deg, #5c0879 0%, #451378 100%);
 }
 
 .round3-option:nth-child(4) .option-badge {
-  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  background: linear-gradient(135deg, #5c0879 0%, #451378 100%);
 }
 
 .option-label {
