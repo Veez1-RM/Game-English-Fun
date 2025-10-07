@@ -155,7 +155,7 @@ export default function Round1() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                 >
-                    Ronde 1 — Susun Kata
+                    Round 1 — Arrange Words
                 </motion.h2>
 
                 <div className="round1-info">
@@ -165,7 +165,7 @@ export default function Round1() {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.2 }}
                     >
-                        Soal: <strong>{index + 1}</strong> / {questions.length}
+                        Question: <strong>{index + 1}</strong> / {questions.length}
                     </motion.div>
                     <motion.div
                         className="info-badge"
@@ -173,7 +173,7 @@ export default function Round1() {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.3 }}
                     >
-                        Giliran: <strong>{currentTeamName}</strong>
+                        Turn: <strong>{currentTeamName}</strong>
                     </motion.div>
                 </div>
 
@@ -296,13 +296,13 @@ export default function Round1() {
                                 transition={{ duration: 0.5, type: "spring", stiffness: 200 }}
                             >
                                 {isCorrect && (
-                                    <>✅ Benar! +{POINTS} untuk {currentTeamName}</>
+                                    <>✅ Correct! +{POINTS} For {currentTeamName}</>
                                 )}
                                 {isTimeout && (
-                                    <>Waktu Habis! Jawaban: {wrongAnswer}</>
+                                    <>Time's Up! Answer: {wrongAnswer}</>
                                 )}
                                 {isWrong && (
-                                    <>❌ Salah. Jawaban: {wrongAnswer}</>
+                                    <>❌ Wrong. Answer: {wrongAnswer}</>
                                 )}
                             </motion.div>
                         )}
@@ -379,7 +379,7 @@ function TimerComponent({ timeLimit, onTimeUp, isActive }) {
                 transition={{ duration: 0.5, repeat: isCritical ? Infinity : 0 }}
             >
                 <div className="timer-number-r1">{timeLeft}</div>
-                <div className="timer-label-r1">detik</div>
+                <div className="timer-label-r1">second</div>
             </motion.div>
 
             <div className="timer-bar-wrapper-r1">

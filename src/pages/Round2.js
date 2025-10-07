@@ -155,7 +155,7 @@ export default function Round2() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
         >
-          Ronde 2 — Quiz ABCD
+          Round 2 — Multiple Choice
         </motion.h2>
         
         <div className="round2-info">
@@ -165,7 +165,7 @@ export default function Round2() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3, duration: 0.5 }}
           >
-            Soal: <strong>{index + 1}</strong> / {questions.length}
+            Question: <strong>{index + 1}</strong> / {questions.length}
           </motion.div>
           <motion.div 
             className="info-card"
@@ -173,7 +173,7 @@ export default function Round2() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4, duration: 0.5 }}
           >
-            Giliran: <strong>{currentTeamName}</strong>
+            Turn: <strong>{currentTeamName}</strong>
           </motion.div>
         </div>
 
@@ -251,9 +251,9 @@ export default function Round2() {
               exit={{ opacity: 0, scale: 0.8, y: -30 }}
               transition={{ duration: 0.5, type: "spring", stiffness: 200 }}
             >
-              {isCorrect && `Benar! +${POINTS} untuk ${currentTeamName}`}
-              {isTimeout && `⏰ Waktu Habis! Jawaban benar: ${correctAnswer}`}
-              {isWrong && `Salah. Jawaban benar: ${correctAnswer}`}
+              {isCorrect && `Correct! +${POINTS} for ${currentTeamName}`}
+              {isTimeout && `⏰ Time's Up! Correct Answer: ${correctAnswer}`}
+              {isWrong && `Wrong. Correct answer: ${correctAnswer}`}
             </motion.div>
           )}
         </AnimatePresence>
@@ -328,7 +328,7 @@ function TimerComponent({ timeLimit, onTimeUp, isActive }) {
                 transition={{ duration: 0.5, repeat: isCritical ? Infinity : 0 }}
             >
                 <div className="timer-number">{timeLeft}</div>
-                <div className="timer-label">detik</div>
+                <div className="timer-label">second</div>
             </motion.div>
 
             <div className="timer-bar-wrapper">

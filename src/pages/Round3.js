@@ -146,7 +146,7 @@ export default function Round3() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, type: "spring", stiffness: 100 }}
         >
-          🎨 Ronde 3 — Tebak Gambar
+          🎨 Round 3 — Guess The Picture
         </motion.h2>
         <motion.p
           className="round3-subtitle"
@@ -154,7 +154,7 @@ export default function Round3() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
         >
-          Berebut! Siapa cepat dia dapat!
+          Scramble! First come, first serve!
         </motion.p>
         <motion.div
           className="round3-progress"
@@ -162,7 +162,7 @@ export default function Round3() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.5 }}
         >
-          Soal: <strong>{index + 1}</strong> / {questions.length}
+          Question: <strong>{index + 1}</strong> / {questions.length}
         </motion.div>
       </div>
 
@@ -214,7 +214,7 @@ export default function Round3() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
           >
-            Pilih Jawaban yang Tepat:
+            Choose the Correct Answer:
           </motion.h3>
           <div className="options-list">
             {q.options.map((opt, idx) => (
@@ -273,8 +273,8 @@ export default function Round3() {
               exit={{ opacity: 0, scale: 0.8, y: -20 }}
               transition={{ duration: 0.4 }}
             >
-              ❌ Salah untuk <strong>{teamName}</strong>. 
-              {answeredTeams.length < 2 && ' Tim lain silakan coba!'}
+              ❌ Wrong Answer For <strong>{teamName}</strong>. 
+              {answeredTeams.length < 2 && ' Other teams please try!'}
             </motion.div>
           )}
         </AnimatePresence>
@@ -309,7 +309,7 @@ export default function Round3() {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.3 }}
               >
-                🎯 Gambar Lengkap!
+                🎯 Full Image!
               </motion.h3>
               
               {fullImagePath && (
@@ -333,9 +333,9 @@ export default function Round3() {
                 transition={{ delay: 0.5 }}
               >
                 {isCorrect ? (
-                  <p>🎉 <strong>{teamName}</strong> benar! +{POINTS} poin</p>
+                  <p>🎉 <strong>{teamName}</strong> Correct! +{POINTS} Point</p>
                 ) : (
-                  <p>❌ Tidak ada yang benar. Jawaban: <strong>{String.fromCharCode(65 + q.answer)}</strong></p>
+                  <p>❌ None of them are correct. Answer: <strong>{String.fromCharCode(65 + q.answer)}</strong></p>
                 )}
               </motion.div>
 
@@ -345,7 +345,7 @@ export default function Round3() {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.6 }}
               >
-                Jawabannya: <strong>{correctAnswer}</strong>
+                Answer: <strong>{correctAnswer}</strong>
               </motion.p>
               
               <motion.button
@@ -357,7 +357,7 @@ export default function Round3() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                {index + 1 >= questions.length ? '🏁 Lihat Skor Akhir' : '➡️ Soal Selanjutnya'}
+                {index + 1 >= questions.length ? '🏁 See Final Score' : '➡️ Next Question'}
               </motion.button>
             </motion.div>
           </motion.div>

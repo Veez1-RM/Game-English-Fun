@@ -46,7 +46,7 @@ export default function PopupSelectTeam({ show, onClose, teams, onSelect }) {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.3 }}
               >
-                Pilih Tim yang Menjawab
+                Select the Team that Answers
               </motion.h3>
               <motion.p 
                 className="popup-subtitle"
@@ -54,7 +54,7 @@ export default function PopupSelectTeam({ show, onClose, teams, onSelect }) {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
               >
-                Tim mana yang paling cepat?
+                Which team is the fastest?
               </motion.p>
             </div>
 
@@ -119,7 +119,7 @@ export default function PopupSelectTeam({ show, onClose, teams, onSelect }) {
               whileHover={{ scale: 1.02, y: -3 }}
               whileTap={{ scale: 0.98 }}
             >
-               <X className='icon'/>Batal
+               <X className='icon'/>Cancel
             </motion.button>
           </motion.div>
         </motion.div>

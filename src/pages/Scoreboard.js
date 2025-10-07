@@ -58,16 +58,16 @@ export default function Scoreboard() {
     return (
       <ul className="breakdown-list">
         <li>
-          <span>Ronde 1:</span>
-          <strong>{scores.perRound[teamKey][1]} poin</strong>
+          <span>Round 1:</span>
+          <strong>{scores.perRound[teamKey][1]} point</strong>
         </li>
         <li>
-          <span>Ronde 2:</span>
-          <strong>{scores.perRound[teamKey][2]} poin</strong>
+          <span>Round 2:</span>
+          <strong>{scores.perRound[teamKey][2]} point</strong>
         </li>
         <li>
-          <span>Ronde 3:</span>
-          <strong>{scores.perRound[teamKey][3]} poin</strong>
+          <span>Round 3:</span>
+          <strong>{scores.perRound[teamKey][3]} point</strong>
         </li>
       </ul>
     );
@@ -94,11 +94,11 @@ export default function Scoreboard() {
         transition={{ duration: 0.6 }}
       >
         <h2 className="scoreboard-title">
-          {isFinal ? "🏆 FINAL RESULT 🏆" : "Skor Sementara"}
+          {isFinal ? "🏆 FINAL RESULT 🏆" : "SCOREBOARD"}
         </h2>
         {!isFinal && (
           <p className="scoreboard-subtitle">
-            Persiapkan untuk Ronde {currentRound}!
+            Prepare For Round {currentRound}!
           </p>
         )}
       </motion.div>
@@ -123,7 +123,7 @@ export default function Scoreboard() {
               {teams.team1}
             </div>
             <div className="team-score">{scores.team1}</div>
-            <div style={{ fontSize: "0.9rem", color: "#a78bfa" }}>poin</div>
+            <div style={{ fontSize: "0.9rem", color: "#a78bfa" }}>point</div>
             {renderBreakdown("team1")}
           </motion.div>
 
@@ -140,7 +140,7 @@ export default function Scoreboard() {
               {teams.team2}
             </div>
             <div className="team-score">{scores.team2}</div>
-            <div style={{ fontSize: "0.9rem", color: "#a78bfa" }}>poin</div>
+            <div style={{ fontSize: "0.9rem", color: "#a78bfa" }}>point</div>
             {renderBreakdown("team2")}
           </motion.div>
         </div>
@@ -158,14 +158,14 @@ export default function Scoreboard() {
               className="scoreboard-button button-continue"
               onClick={() => navigate("/bonus")}
             >
-              Lanjut ke Bonus 🎯
+              Play Extra Round 🎯
             </button>
           ) : (
             <button
               className="scoreboard-button button-finish"
               onClick={handleShowWinnerPopup}
             >
-              Finish & Lihat Pemenang
+              Finish
             </button>
           )
         ) : (
@@ -173,7 +173,7 @@ export default function Scoreboard() {
             className="scoreboard-button button-continue"
             onClick={handleNextRound}
           >
-            Lanjut ke Ronde {currentRound} ▶
+            Next Round {currentRound} ▶
           </button>
         )}
       </motion.div>
@@ -217,7 +217,7 @@ export default function Scoreboard() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5 }}
                   >
-                    Pertandingan Seri!
+                    Draw!
                   </motion.h2>
                   <motion.p
                     initial={{ opacity: 0 }}
@@ -225,7 +225,7 @@ export default function Scoreboard() {
                     transition={{ delay: 0.7 }}
                     style={{ color: "#a78bfa", fontSize: "1.2rem", margin: "20px 0" }}
                   >
-                    Kedua tim bermain sangat baik!
+                    Both teams played very well!
                   </motion.p>
                 </>
               ) : (
@@ -243,7 +243,7 @@ export default function Scoreboard() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5 }}
                   >
-                    Pemenangnya adalah:
+                    Winner :
                   </motion.h2>
                   <motion.h1
                     className="winner-name"
@@ -264,7 +264,7 @@ export default function Scoreboard() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Main Lagi 🔁
+                Play Again 🔁
               </motion.button>
             </motion.div>
           </motion.div>
