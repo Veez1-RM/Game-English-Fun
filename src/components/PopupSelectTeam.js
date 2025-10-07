@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './PopupSelectTeam.css';
+import { Trophy, ArrowRight, Users, X } from "lucide-react";
 
 export default function PopupSelectTeam({ show, onClose, teams, onSelect }) {
   if (!show) return null;
@@ -37,7 +38,7 @@ export default function PopupSelectTeam({ show, onClose, teams, onSelect }) {
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.2, type: "spring", stiffness: 300 }}
               >
-                🏆
+                <Trophy/>
               </motion.div>
               <motion.h3 
                 className="popup-title"
@@ -77,10 +78,10 @@ export default function PopupSelectTeam({ show, onClose, teams, onSelect }) {
                     repeatDelay: 3
                   }}
                 >
-                  👥
+                  <Users className='icon'/>
                 </motion.div>
                 <span className="team-name">{teams.team1}</span>
-                <span className="team-arrow">→</span>
+                <span className="icon"><ArrowRight/></span>
               </motion.button>
 
               <motion.button
@@ -102,10 +103,10 @@ export default function PopupSelectTeam({ show, onClose, teams, onSelect }) {
                     repeatDelay: 3
                   }}
                 >
-                  👥
+                  <Users className='icon'/>
                 </motion.div>
                 <span className="team-name">{teams.team2}</span>
-                <span className="team-arrow">→</span>
+                <span className="icon"><ArrowRight/></span>
               </motion.button>
             </div>
 
@@ -118,7 +119,7 @@ export default function PopupSelectTeam({ show, onClose, teams, onSelect }) {
               whileHover={{ scale: 1.02, y: -3 }}
               whileTap={{ scale: 0.98 }}
             >
-              ❌ Batal
+               <X className='icon'/>Batal
             </motion.button>
           </motion.div>
         </motion.div>
