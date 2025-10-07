@@ -131,7 +131,7 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  border: 5px solid #00cec9;
+  border: 5px solid #8900ce;
   position: relative;
   transition: all 0.3s ease;
 }
@@ -144,7 +144,7 @@
   right: -8px;
   bottom: -8px;
   border-radius: 50%;
-  background: linear-gradient(45deg, #00cec9, #00b894);
+  background: linear-gradient(45deg, #8d0994, #63038d);
   z-index: -1;
   opacity: 0.3;
   animation: timerGlowR1 2s ease-in-out infinite;
@@ -270,7 +270,7 @@
 
 /* Game Board */
 .game-board {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(76, 4, 116, 0.95);
   border-radius: 30px;
   padding: 50px 40px;
   max-width: 800px;
@@ -306,14 +306,14 @@
 .answer-slot {
   width: 60px;
   height: 60px;
-  border: 3px solid #e0e0e0;
+  border: 3px solid #7614af;
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 32px;
   font-weight: bold;
-  background: #f9f9f9;
+  background: #ebacf7;
   box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
   position: relative;
@@ -333,9 +333,9 @@
 }
 
 .answer-slot.filled {
-  background: linear-gradient(135deg, #fff9e6 0%, #fffbe6 100%);
-  border-color: #ffd93d;
-  box-shadow: 0 4px 15px rgba(255, 217, 61, 0.3);
+  background: linear-gradient(135deg, #f6e6ff 0%, #f3e6ff 100%);
+  border-color: #a43dff;
+  box-shadow: 0 4px 15px rgba(210, 61, 255, 0.3);
 }
 
 .answer-slot.filled::before {
@@ -360,7 +360,7 @@
   font-size: 26px;
   font-weight: bold;
   border-radius: 50%;
-  border: 3px solid #667eea;
+  border: 3px solid #4f119f;
   background: linear-gradient(135deg, #e6f7ff 0%, #f0f9ff 100%);
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
