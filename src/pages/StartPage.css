@@ -294,7 +294,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 70px;
+  gap: 50px;
   opacity: 0;
   transform: translateY(50px); /* posisi awal (belum muncul) */
   transition: opacity 0.8s ease, transform 0.8s ease;

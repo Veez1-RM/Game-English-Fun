@@ -9,6 +9,7 @@ import Card from "../components/Card";
 import Button from "../components/button";
 import Dither from '../components/Dither';
 import Rule1 from "../img/Untitled-1.png";
+import RuleG from "../img/1card.png";
 import Rule2 from "../img/Untitled-4.png";
 import Rule3 from "../img/Untitled-5.png";
 import { FaQuestion } from "react-icons/fa";
@@ -169,6 +170,11 @@ export default function StartPage(){
           className={`card-container floating 
             ${isVisible ? "visible" : scrollDirection === "up" ? "hidden-up" : ""}`}
         >
+          <Card 
+            backIcon={<FaQuestion />} 
+            backText="General Rules" 
+            frontImage={RuleG}
+          />
           <Card 
             backIcon={<FaQuestion />} 
             backText="First Round" 
