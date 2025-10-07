@@ -1,6 +1,23 @@
 [
-  { "question": "What language is commonly used for AI and ML?", "options": ["C++", "Python", "Ruby", "PHP"], "answer": 1 },
-  { "question": "Capital of France?", "options": ["Berlin", "Paris", "Madrid", "Rome"], "answer": 1 },
-  { "question": "HTML is for ...", "options": ["Styling", "Markup", "Programming", "Database"], "answer": 1 },
-  { "question": "What does CSS stand for?", "options": ["Cascading Style Sheets", "Computer Style Sheets", "Creative Style System", "Control Style Sheet"], "answer": 0 }
+  { "question": "Which country has the largest population in the world?", "options": ["India", "United States", "China", "Indonesia"], "answer": 2 },
+  { "question": "Which planet is closest to the Sun?", "options": ["Venus", "Mercury", "Mars", "Earth"], "answer": 1 },
+  { "question": "Who invented the first electric light bulb?", "options": ["Nikola Tesla", "Isaac Newton", "Thomas Edison", "Albert Einstein"], "answer": 2 },
+  { "question": "What is the largest continent in the world?", "options": ["Africa", "Asia", "America", "Europe"], "answer": 1 },
+  { "question": "What is the highest volcano in Indonesia?", "options": ["Semeru", "Kerinci", "Rinjani", "Merapi"], "answer": 1 },
+  { "question": "What is the capital city of Canada?", "options": ["Toronto", "Vancouver", "Ottawa", "Montreal"], "answer": 2 },
+  { "question": "Who discovered the law of gravity?", "options": ["Einstein", "Newton", "Galileo", "Archimedes"], "answer": 1 },
+  { "question": "What is the formula for the surface area of a cube?", "options": ["6 × s²", "4 × s²", "s³", "2 × s²"], "answer": 0 },
+  { "question": "What is the official language of Brazil?", "options": ["Spanish", "Portuguese", "French", "Italian"], "answer": 1 },
+  { "question": "What is the capital city of Turkey?", "options": ["Istanbul", "Ankara", "Izmir", "Antalya"], "answer": 1 },
+  { "question": "What is the largest planet in our solar system?", "options": ["Earth", "Jupiter", "Saturn", "Mars"], "answer": 1 },
+  { "question": "Which instrument measures temperature?", "options": ["Barometer", "Thermometer", "Compass", "Altimeter"], "answer": 1 },
+  { "question": "What part of the plant conducts photosynthesis?", "options": ["Root", "Leaf", "Stem", "Flower"], "answer": 1 },
+  { "question": "Which country is famous for the Eiffel Tower?", "options": ["Italy", "Germany", "France", "Spain"], "answer": 2 },
+  { "question": "Which gas do humans need to breathe?", "options": ["Carbon Dioxide", "Nitrogen", "Oxygen", "Helium"], "answer": 2 },
+  { "question": "What is H2O commonly known as?", "options": ["Salt", "Oxygen", "Water", "Hydrogen"], "answer": 2 },
+  { "question": "Which continent is Australia located in?", "options": ["Asia", "Europe", "Australia", "Africa"], "answer": 2 },
+  { "question": "Which shape has four equal sides?", "options": ["Rectangle", "Square", "Triangle", "Circle"], "answer": 1 },
+  { "question": "What is the main language spoken in Japan?", "options": ["Chinese", "Japanese", "Korean", "Thai"], "answer": 1 },
+  { "question": "Which part of the computer is known as the brain?", "options": ["Monitor", "Keyboard", "CPU", "Mouse"], "answer": 2 }
 ]
+

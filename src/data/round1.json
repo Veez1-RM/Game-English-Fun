@@ -1,3 +1,22 @@
 [
-  "COMPUTER","PYTHON","DATABASE","INTERNET"
+  "CHAIR",
+  "TABLE",
+  "DOOR",
+  "WINDOW",
+  "LAMP",
+  "PHONE",
+  "NOTEBOOK",
+  "HEADPHONE",
+  "SHOES",
+  "TOOTHBRUSH",
+  "MIRROR",
+  "CLOCK",
+  "TELEVISION",
+  "BOTTLE",
+  "SPOON",
+  "PLATE",
+  "BACKPACK",
+  "BED",
+  "PILLOW",
+  "CARPET"
 ]

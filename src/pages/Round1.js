@@ -6,9 +6,9 @@ import { GameContext } from '../context/GameContext';
 import { useNavigate } from 'react-router-dom';
 import './Round1.css';
 
-const QUESTIONS_PER_TEAM = 2;
+const QUESTIONS_PER_TEAM =10;
 const POINTS = 10;
-const TIME_LIMIT = 15;
+const TIME_LIMIT = 25;
 
 export default function Round1() {
     const { teams, addScore, setCurrentRound } = useContext(GameContext);
@@ -299,7 +299,7 @@ export default function Round1() {
                                     <>✅ Benar! +{POINTS} untuk {currentTeamName}</>
                                 )}
                                 {isTimeout && (
-                                    <>⏰ Waktu Habis! Jawaban: {wrongAnswer}</>
+                                    <>Waktu Habis! Jawaban: {wrongAnswer}</>
                                 )}
                                 {isWrong && (
                                     <>❌ Salah. Jawaban: {wrongAnswer}</>

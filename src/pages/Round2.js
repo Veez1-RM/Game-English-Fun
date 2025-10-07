@@ -6,9 +6,9 @@ import { GameContext } from '../context/GameContext';
 import { useNavigate } from 'react-router-dom';
 import './Round2.css';
 
-const QUESTIONS_PER_TEAM = 2;
+const QUESTIONS_PER_TEAM = 10;
 const POINTS = 15;
-const TIME_LIMIT = 15;
+const TIME_LIMIT = 20;
 
 export default function Round2() {
   const { teams, addScore, setCurrentRound } = useContext(GameContext);
@@ -336,7 +336,7 @@ function TimerComponent({ timeLimit, onTimeUp, isActive }) {
                     className="timer-bar"
                     animate={{
                         width: `${timerPercentage}%`,
-                        backgroundColor: isCritical ? '#dc3545' : isWarning ? '#ffc107' : '#00cec9'
+                        backgroundColor: isCritical ? '#dc3545' : isWarning ? '#ffc107' : '#a500ceff'
                     }}
                     transition={{ duration: 0.3 }}
                 />

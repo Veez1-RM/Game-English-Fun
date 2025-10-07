@@ -273,7 +273,7 @@
 
 /* Game Board */
 .game-board {
-  background: rgba(76, 4, 116, 0.95);
+  background: rgba(30, 20, 50, 0.8);
   border-radius: 30px;
   padding: 50px 40px;
   max-width: 800px;
@@ -283,6 +283,7 @@
   z-index: 10;
   backdrop-filter: blur(10px);
   animation: scaleIn 0.5s ease-out;
+  border: 2px solid rgba(168, 85, 247, 0.3);
 }
 
 @keyframes scaleIn {
@@ -429,21 +430,33 @@
 }
 
 .undo-btn {
-  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+  background: rgba(30, 20, 50, 0.8);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
+   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3),
+              inset 0 0 20px rgba(168, 85, 247, 0.1);
+  border: 2px solid rgba(247, 112, 85, 0.2);
   color: white;
+  text-shadow: 0px 1px 11px rgba(214,14,14,0.9);
 }
 
 .undo-btn:hover:not(:disabled) {
-  background: linear-gradient(135deg, #ff5252 0%, #e53f5f 100%);
+  box-shadow: 0 0px 25px rgba(255, 0, 0, 0.205);
 }
 
 .submit-btn {
-  background: linear-gradient(135deg, #4caf50 0%, #43a047 100%);
+  background: rgba(30, 20, 50, 0.8);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
+   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2),
+              inset 0 0 20px rgba(168, 85, 247, 0.1);
+  border: 2px solid rgba(117, 247, 85, 0.3);
   color: white;
+  text-shadow: 0px 1px 11px rgba(54, 214, 14, 1);
 }
 
 .submit-btn:hover:not(:disabled) {
-  background: linear-gradient(135deg, #45a049 0%, #3d8f40 100%);
+  box-shadow: 0 0px 25px rgba(55, 255, 0, 0.441);
 }
 
 /* Feedback */
