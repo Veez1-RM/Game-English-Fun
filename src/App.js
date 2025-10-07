@@ -6,6 +6,7 @@ import Round1 from './pages/Round1';
 import Round2 from './pages/Round2';
 import Round3 from './pages/Round3';
 import Scoreboard from './pages/Scoreboard';
+import BonusRound from './pages/BonusRound';
 
 function App(){
   return (
@@ -16,6 +17,7 @@ function App(){
           <Route path="/round1" element={<Round1 />} />
           <Route path="/round2" element={<Round2 />} />
           <Route path="/round3" element={<Round3 />} />
+          <Route path="/bonus" element={<BonusRound />} />
           <Route path="/scoreboard" element={<Scoreboard />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>

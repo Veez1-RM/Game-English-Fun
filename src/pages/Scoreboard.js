@@ -24,12 +24,26 @@ export default function Scoreboard() {
   }, []);
 
   const handleShowWinnerPopup = () => {
-    if (winnerSoundRef.current) {
-      winnerSoundRef.current.currentTime = 0;
-      winnerSoundRef.current.play().catch(err => console.warn("Winner sound error:", err));
+    if (isDraw) {
+      // Kalau seri, langsung ke ronde bonus
+      if (nextSoundRef.current) {
+        nextSoundRef.current.currentTime = 0;
+        nextSoundRef.current.play().catch(err => console.warn("Audio error:", err));
+      }
+
+      setTimeout(() => {
+        navigate("/bonus");
+      }, 300);
+    } else {
+      // Kalau tidak seri, tampilkan popup pemenang
+      if (winnerSoundRef.current) {
+        winnerSoundRef.current.currentTime = 0;
+        winnerSoundRef.current.play().catch(err => console.warn("Winner sound error:", err));
+      }
+      setShowPopup(true);
     }
-    setShowPopup(true);
   };
+
 
 
 
@@ -139,13 +153,21 @@ export default function Scoreboard() {
         transition={{ duration: 0.5, delay: 0.5 }}
       >
         {isFinal ? (
-          <button
-            className="scoreboard-button button-finish"
-            onClick={handleShowWinnerPopup}
-          >
-            Finish & Lihat Pemenang
-          </button>
-
+          isDraw ? (
+            <button
+              className="scoreboard-button button-continue"
+              onClick={() => navigate("/bonus")}
+            >
+              Lanjut ke Bonus 🎯
+            </button>
+          ) : (
+            <button
+              className="scoreboard-button button-finish"
+              onClick={handleShowWinnerPopup}
+            >
+              Finish & Lihat Pemenang
+            </button>
+          )
         ) : (
           <button
             className="scoreboard-button button-continue"
@@ -153,9 +175,9 @@ export default function Scoreboard() {
           >
             Lanjut ke Ronde {currentRound} ▶
           </button>
-
         )}
       </motion.div>
+
 
       {/* Winner Popup */}
       <AnimatePresence>
