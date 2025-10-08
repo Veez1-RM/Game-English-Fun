@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef,useEffect } from 'react';
+import React, { useContext, useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GameContext } from '../context/GameContext';
 import './StartPage.css'
@@ -29,7 +29,7 @@ const logos = [
   { src: Logor, alt: "Random Logo" },
 ];
 
-export default function StartPage(){
+export default function StartPage() {
   const { teams, setTeamNames, resetGame, setCurrentRound } = useContext(GameContext);
   const [t1, setT1] = useState(teams.team1);
   const [t2, setT2] = useState(teams.team2);
@@ -42,7 +42,7 @@ export default function StartPage(){
   const bgmRef = useRef(null);
 
 
-// ✅ Play BGM saat halaman dimuat
+  // ✅ Play BGM saat halaman dimuat
   useEffect(() => {
     const bgm = new Audio('/audio/bg-music.mp3');
     bgm.loop = true;
@@ -64,16 +64,16 @@ export default function StartPage(){
   }, []);
 
   const handleScrollToRules = () => {
-  const clickSound = new Audio('/audio/click-start.mp3');
-  clickSound.volume = 1;
-  clickSound.play();
+    const clickSound = new Audio('/audio/click-start.mp3');
+    clickSound.volume = 1;
+    clickSound.play();
 
-  if (rulesRef.current) {
-    const elementBottom = rulesRef.current.getBoundingClientRect().bottom + window.pageYOffset;
-    const y = elementBottom - window.innerHeight + 3;
-    window.scrollTo({ top: y, behavior: "smooth" });
-  }
-};
+    if (rulesRef.current) {
+      const elementBottom = rulesRef.current.getBoundingClientRect().bottom + window.pageYOffset;
+      const y = elementBottom - window.innerHeight + 3;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+  };
 
 
   const handleStart = () => {
@@ -97,6 +97,8 @@ export default function StartPage(){
 
 
   useEffect(() => {
+    const node = cardRef.current; // ✅ Simpan dulu ke variabel lokal
+
     const handleScroll = () => {
       if (window.scrollY > lastScrollY.current) {
         setScrollDirection("down");
@@ -105,6 +107,7 @@ export default function StartPage(){
       }
       lastScrollY.current = window.scrollY;
     };
+
     window.addEventListener("scroll", handleScroll);
 
     const observer = new IntersectionObserver(
@@ -115,15 +118,16 @@ export default function StartPage(){
       { threshold: 0.2 }
     );
 
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
+    if (node) {
+      observer.observe(node);
     }
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      if (cardRef.current) observer.unobserve(cardRef.current);
+      if (node) observer.unobserve(node); // ✅ Gunakan variabel lokal, bukan cardRef.current
     };
   }, []);
+
 
   return (
     <div className='Full'>
@@ -137,18 +141,18 @@ export default function StartPage(){
       </div>
 
       <div className="logo-marquee">
-            <div className="logo-track">
-              {/* Track pertama */}
-              {logos.map((logo, index) => (
-                <img key={index} src={logo.src} alt={logo.alt} />
-              ))}
-              {/* Track duplikat supaya loop mulus */}
-              {logos.map((logo, index) => (
-                <img key={`dup-${index}`} src={logo.src} alt={logo.alt} />
-              ))}
-            </div>
-          </div>
-      <div className='Rules-container'ref={rulesRef}>
+        <div className="logo-track">
+          {/* Track pertama */}
+          {logos.map((logo, index) => (
+            <img key={index} src={logo.src} alt={logo.alt} />
+          ))}
+          {/* Track duplikat supaya loop mulus */}
+          {logos.map((logo, index) => (
+            <img key={`dup-${index}`} src={logo.src} alt={logo.alt} />
+          ))}
+        </div>
+      </div>
+      <div className='Rules-container' ref={rulesRef}>
 
         <div className="dither-bg">
           <Dither
@@ -163,47 +167,47 @@ export default function StartPage(){
           />
         </div>
         <div className='Headline-Rule'>
-            <p>Rules</p>
+          <p>Rules</p>
         </div>
-        <div 
-          ref={cardRef} 
+        <div
+          ref={cardRef}
           className={`card-container floating 
             ${isVisible ? "visible" : scrollDirection === "up" ? "hidden-up" : ""}`}
         >
-          <Card 
-            backIcon={<FaQuestion />} 
-            backText="General Rules" 
+          <Card
+            backIcon={<FaQuestion />}
+            backText="General Rules"
             frontImage={RuleG}
           />
-          <Card 
-            backIcon={<FaQuestion />} 
-            backText="First Round" 
+          <Card
+            backIcon={<FaQuestion />}
+            backText="First Round"
             frontImage={Rule1}
           />
-          <Card 
-            backIcon={<FaQuestion />} 
-            backText="Second Round" 
+          <Card
+            backIcon={<FaQuestion />}
+            backText="Second Round"
             frontImage={Rule2}
           />
-          <Card 
-            backIcon={<FaQuestion />} 
-            backText="Third Round" 
+          <Card
+            backIcon={<FaQuestion />}
+            backText="Third Round"
             frontImage={Rule3}
           />
         </div>
         <div className='button-play'>
           <div >
-              <input className='input1' value={t1} onChange={(e) => setT1(e.target.value)} />
-            </div>
-            <Button onClick={handleStart}/>
-            <div>
-              <input className='input1' value={t2} onChange={(e) => setT2(e.target.value)} />
-            </div>
-            
+            <input className='input1' value={t1} onChange={(e) => setT1(e.target.value)} />
           </div>
+          <Button onClick={handleStart} />
+          <div>
+            <input className='input1' value={t2} onChange={(e) => setT2(e.target.value)} />
+          </div>
+
+        </div>
       </div>
       <div className='footer'>
-            <p>Designed & Developed by Ridho Maulana and Ahmad Hafis.</p>
+        <p>Designed & Developed by Ridho Maulana and Ahmad Hafis.</p>
       </div>
     </div>
   );

@@ -243,7 +243,7 @@ export default function Scoreboard() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5 }}
                   >
-                    Winner :
+                    Winner!
                   </motion.h2>
                   <motion.h1
                     className="winner-name"
